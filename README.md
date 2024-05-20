@@ -1,96 +1,135 @@
 # DIPLOMAT
 
-**Deep learning-based Identity Preserving Labeled-Object Multi-Animal Tracking**
+Deep learning-based Identity Preserving Labeled-Object Multi-Animal Tracking.
 
----
+**NOTE:** DIPLOMAT is currently alpha software, there may be minor bugs and usability issues.
 
-### About
+## About
 
-DIPLOMAT is a cutting-edge tool for multi-animal tracking that utilizes deep learning to preserve individual identities across frames. It integrates seamlessly with leading tracking frameworks like DeepLabCut and SLEAP. This tool distinguishes itself by processing confidence maps directly, which enhances the tracking accuracy over traditional peak detection methods.
+DIPLOMAT provides algorithms and tools for performing multi-animal identity preserving tracking on top of single animal and multi animal CNN based tracking packages. Currently, it supports running on both DeepLabCut and SLEAP projects.
+Unlike other multi-animal tracking packages, DIPLOMAT's algorithms work directly off confidence maps instead of running peak detection, allowing for more nuanced tracking results compared to other methods. 
 
-<div style="display: flex; justify-content: space-between; gap: 20px; margin-bottom: 20px;">
-    <img src="https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/example1.png" alt="Tracking 2 Degus" style="width: 48%;">
-    <img src="https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/example2.png" alt="Tracking 3 Rats" style="width: 48%;">
-</div>
+[https://github.com/TravisWheelerLab/DIPLOMAT/assets/47544550/d805b673-4678-4297-b288-3fd08ad3cf62](https://private-user-images.githubusercontent.com/47544550/237458675-d805b673-4678-4297-b288-3fd08ad3cf62.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTIwNzUxNDMsIm5iZiI6MTcxMjA3NDg0MywicGF0aCI6Ii80NzU0NDU1MC8yMzc0NTg2NzUtZDgwNWI2NzMtNDY3OC00Mjk3LWIyODgtM2ZkMDhhZDNjZjYyLm1wND9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA0MDIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNDAyVDE2MjA0M1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWZjNDMzZWZiMWIwMjUxODY1Y2RhMjMxYjUzZjk5YTlkYjI4Y2Y1NWMzZGVjYWM5ZDk1N2ZkYWI3OGI2ODc3NGYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.C-HOqmEW44gEcMJF9So0LKcj1nQaQZORye3CHVnsMTE)
 
-<div>
-    <img src="https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/UIDemo.png" alt="UI Demo" style="width: 100%; height: auto;">
-    <figcaption>Interactive UI for precise tracking adjustments.</figcaption>
-</div>
+|                                                            |                                                  |
+|------------------------------------------------------------|--------------------------------------------------|
+| ![Example of tracking 2 Degus in a Box](https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/example1.png) | ![Example of tracking 3 Rats](https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/example2.png) |
 
----
+DIPLOMAT also includes a UI for performing tracking and several other tools for storing and visualizing confidence maps. 
 
-### Installation
+![UI Demo Showing user correcting tracking in a video](https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/UIDemo.png)
 
-**Prerequisites:** [Mamba](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html) with [Miniforge](https://github.com/conda-forge/miniforge).
+## Installation
 
-<div style="background: #F9F9F9; padding: 10px; border-left: 5px solid #2B6CB0;">
-    <h3>Environment Setup:</h3>
-    <code>## DeepLabCut with GPU support<br>
-    mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-DEEPLABCUT.yaml</code>
-    <code>## DeepLabCut with CPU only<br>
-    mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-DEEPLABCUT-CPU.yaml</code>
-    <code>## SLEAP with GPU support<br>
-    mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-SLEAP.yaml</code>
-    <code>## SLEAP with CPU only<br>
-    mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-SLEAP-CPU.yaml</code>
-</div>
+DIPLOMAT also includes four environment configuration files for setting up DIPLOMAT with 
+[mamba](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html), which can
+be installed on Windows, Linux, or MacOS using the [Miniforge](https://github.com/conda-forge/miniforge) installer.
+To create an environment using mamba, run one of these four commands:
+```bash
+# Create the environment for using DIPLOMAT with DeepLabCut
+# GPU:
+mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-DEEPLABCUT.yaml
+# CPU only:
+mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-DEEPLABCUT-CPU.yaml
+# OR Create an environment for using DIPLOMAT with SLEAP instead...
+# GPU:
+mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-SLEAP.yaml
+# CPU only:
+mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-SLEAP-CPU.yaml
+```
+And then activate the environment with one of these two commands:
+```bash
+# Activate the DeepLabCut/DIPLOMAT environment...
+mamba activate DIPLOMAT-DEEPLABCUT
+# Activate the SLEAP/DIPLOMAT environment...
+mamba activate DIPLOMAT-SLEAP
+```
 
-<div style="background: #E2E8F0; padding: 10px; border-left: 5px solid #2C7A7B;">
-    <h3>Activation:</h3>
-    <code>mamba activate DIPLOMAT-DEEPLABCUT</code><br>
-    <code>mamba activate DIPLOMAT-SLEAP</code>
-</div>
+For a more thorough explanation of the installation process and alternative installation methods, see the 
+[documentation](https://diplomat.readthedocs.io/en/latest/installation.html).
 
-> [Full Installation Guide](https://diplomat.readthedocs.io/en/latest/installation.html)
+## Usage
 
----
+#### Running DIPLOMAT
 
-### Usage
+To run DIPLOMAT on a video once it is installed, simply use DIPLOMAT's `unsupervised` and `supervised` commands to track a video:
+```bash
+# Run DIPLOMAT with no UI...
+diplomat track -c path/to/config -v path/to/video
+# Run DIPLOMAT with UI...
+diplomat track_and_interact -c path/to/config -v path/to/video
+```
 
-<div style="background: #FFF5F5; padding: 10px; border-left: 5px solid #C53030;">
-    <h3>Tracking and Annotation Commands:</h3>
-    <code>diplomat track -c path/to/config -v path/to/video</code> <!-- Track without UI --><br>
-    <code>diplomat track_and_interact -c path/to/config -v path/to/video</code> <!-- Track with interactive UI --><br>
-    <code>diplomat annotate -c path/to/config -v path/to/video</code> <!-- Annotate video --><br>
-    <code>diplomat interact -s path/to/ui_state.dipui</code> <!-- Reopen UI for major modifications --><br>
-    <code>diplomat tweak -c path/to/config -v path/to/video</code> <!-- Minor tweaks to tracking -->
-</div>
+Multiple videos can be tracked by passing them as a list:
+```bash
+diplomat track -c path/to/config -v [path/to/video1, path/to/video2, "path/to/video3"]
+```
 
-> [Documentation and Basic Usage](https://diplomat.readthedocs.io/en/latest/basic_usage.html)
+Once tracking is done, DIPLOMAT can create labeled videos via it's `annotate` subcommand:
+```bash
+diplomat annotate -c path/to/config -v path/to/video
+```
 
----
+If you need to reopen the UI to make further major modifications, you can do so using the interact subcommand:
+```bash
+diplomat interact -s path/to/ui_state.dipui
+```
+This displays the full UI again for making further edits. Results are saved back to the same files.
 
-### Support
+If you need to make minor modifications after tracking a video, you can do so using the tweak subcommand:
+```bash
+diplomat tweak -c path/to/config -v path/to/video
+```
+This will display a stripped down version of the interactive editing UI, allowing for minor tweaks to be made to the 
+tracks, and then saved back to the same file.
 
-<div style="background: #EBF8FF; padding: 10px; border-left: 5px solid #3182CE;">
-    <h3>Get Help:</h3>
-    <code>diplomat --help</code><br>
-    <code>diplomat track --help</code><br>
-    <code>diplomat predictors --help</code>
-</div>
+For a list of additional ways DIPLOMAT can be used, see the [documentation](https://diplomat.readthedocs.io/en/latest/basic_usage.html).
 
-<div style="background: #F7FAFC; padding: 10px
+#### Additional Help
 
-; border-left: 5px solid #CBD5E0;">
-    <h3>Development and Contributions:</h3>
-    For those interested in contributing, refer to the [Development Usage](https://diplomat.readthedocs.io/en/latest/advanced_usage.html#development-usage) guide. Feel free to submit pull requests or reach out directly to Isaac Robinson via email.
-</div>
+All DIPLOMAT commands are documented via help strings. To get more information about a diplomat subcommand or command, simply run it with the `-h` or `--help` flag.
 
----
+```bash
+# Help for all of diplomat (lists sub commands of diplomat):
+diplomat --help 
+# Help for the track subcommand:
+diplomat track --help
+# Help for the predictors subcommand space:
+diplomat predictors --help
+```
 
-### License and Authors
+## Documentation
 
-<div style="background: #EDF2F7; padding: 10px; border-left: 5px solid #E2E8F0;">
-    <h3>License:</h3>
-    Available in the project's [LICENSE](#) file.
-</div>
+DIPLOMAT has documentation on ReadTheDocs at [https://diplomat.readthedocs.io/en/latest](https://diplomat.readthedocs.io/en/latest).
 
-<div style="background: #FAF5FF; padding: 10px; border-left: 5px solid #D6BCFA;">
-    <h3>Team:</h3>
-    A comprehensive list of contributors can be found in the project's [AUTHORS](#) file. For inquiries, contact [Isaac Robinson](mailto:isaac.k.robinson2000@gmail.com).
-</div>
+## Development
 
----
+DIPLOMAT is written entirely in python. To set up an environment for developing DIPLOMAT, you can simply pull down this repository and install its
+requirements using pip. For a further description of how to set up DIPLOMAT for development, see the 
+[Development Usage](https://diplomat.readthedocs.io/en/latest/advanced_usage.html#development-usage) section in the documentation.
 
-**Note:** DIPLOMAT is currently in alpha; it may exhibit minor bugs and usability issues.
+## Contributing
+
+We welcome external contributions, although it is a good idea to contact the
+maintainers before embarking on any significant development work to make sure
+the proposed changes are a good fit.
+
+Contributors agree to license their code under the license in use by this
+project (see `LICENSE`).
+
+To contribute:
+
+  1. Fork the repo
+  2. Make changes on a branch
+  3. Create a pull request
+
+## License
+
+See `LICENSE` for details.
+
+## Authors
+
+If you have any questions, feel free to reach out to Isaac Robinson, at [isaac.k.robinson2000@gmail.com](mailto:isaac.k.robinson2000@gmail.com)
+
+See `AUTHORS` the full list of authors.
+
