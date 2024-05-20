@@ -6,17 +6,17 @@
 
 ### About
 
-DIPLOMAT is an advanced multi-animal tracking software that leverages the power of deep learning to maintain individual identities across various environments. It integrates seamlessly with major tracking packages like DeepLabCut and SLEAP, offering a sophisticated yet user-friendly solution for researchers. By utilizing confidence maps rather than traditional peak detection methods, DIPLOMAT ensures more accurate and nuanced tracking results.
+DIPLOMAT is a cutting-edge tool for multi-animal tracking that utilizes deep learning to preserve individual identities across frames. It integrates seamlessly with leading tracking frameworks like DeepLabCut and SLEAP. This tool distinguishes itself by processing confidence maps directly, which enhances the tracking accuracy over traditional peak detection methods.
 
-<div style="display: flex; justify-content: space-between; align-items: center;">
-    <img src="https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/example1.png" alt="Tracking 2 Degus" width="45%">
-    <img src="https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/example2.png" alt="Tracking 3 Rats" width="45%">
+<div style="display: flex; justify-content: space-between; gap: 20px; margin-bottom: 20px;">
+    <img src="https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/example1.png" alt="Tracking 2 Degus" style="width: 48%;">
+    <img src="https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/example2.png" alt="Tracking 3 Rats" style="width: 48%;">
 </div>
 
-<figure>
-    <img src="https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/UIDemo.png" alt="UI Demo">
+<div>
+    <img src="https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/UIDemo.png" alt="UI Demo" style="width: 100%; height: auto;">
     <figcaption>Interactive UI for precise tracking adjustments.</figcaption>
-</figure>
+</div>
 
 ---
 
@@ -24,29 +24,23 @@ DIPLOMAT is an advanced multi-animal tracking software that leverages the power 
 
 **Prerequisites:** [Mamba](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html) with [Miniforge](https://github.com/conda-forge/miniforge).
 
-**Environment Setup:**
+<div style="background: #F9F9F9; padding: 10px; border-left: 5px solid #2B6CB0;">
+    <h3>Environment Setup:</h3>
+    <code>## DeepLabCut with GPU support<br>
+    mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-DEEPLABCUT.yaml</code>
+    <code>## DeepLabCut with CPU only<br>
+    mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-DEEPLABCUT-CPU.yaml</code>
+    <code>## SLEAP with GPU support<br>
+    mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-SLEAP.yaml</code>
+    <code>## SLEAP with CPU only<br>
+    mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-SLEAP-CPU.yaml</code>
+</div>
 
-```bash
-# For DeepLabCut with GPU support
-mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-DEEPLABCUT.yaml
-
-# For DeepLabCut with CPU only
-mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-DEEPLABCUT-CPU.yaml
-
-# For SLEAP with GPU support
-mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-SLEAP.yaml
-
-# For SLEAP with CPU only
-mamba env create -f https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/conda-environments/DIPLOMAT-SLEAP-CPU.yaml
-```
-
-**Activation:**
-
-```bash
-mamba activate DIPLOMAT-DEEPLABCUT
-# or
-mamba activate DIPLOMAT-SLEAP
-```
+<div style="background: #E2E8F0; padding: 10px; border-left: 5px solid #2C7A7B;">
+    <h3>Activation:</h3>
+    <code>mamba activate DIPLOMAT-DEEPLABCUT</code><br>
+    <code>mamba activate DIPLOMAT-SLEAP</code>
+</div>
 
 > [Full Installation Guide](https://diplomat.readthedocs.io/en/latest/installation.html)
 
@@ -54,24 +48,14 @@ mamba activate DIPLOMAT-SLEAP
 
 ### Usage
 
-**Tracking and Annotation:**
-
-```bash
-# Track without UI
-diplomat track -c path/to/config -v path/to/video
-
-# Track with interactive UI
-diplomat track_and_interact -c path/to/config -v path/to/video
-
-# Annotate video
-diplomat annotate -c path/to/config -v path/to/video
-
-# Reopen UI for major modifications
-diplomat interact -s path/to/ui_state.dipui
-
-# Minor tweaks to tracking
-diplomat tweak -c path/to/config -v path/to/video
-```
+<div style="background: #FFF5F5; padding: 10px; border-left: 5px solid #C53030;">
+    <h3>Tracking and Annotation Commands:</h3>
+    <code>diplomat track -c path/to/config -v path/to/video</code> <!-- Track without UI --><br>
+    <code>diplomat track_and_interact -c path/to/config -v path/to/video</code> <!-- Track with interactive UI --><br>
+    <code>diplomat annotate -c path/to/config -v path/to/video</code> <!-- Annotate video --><br>
+    <code>diplomat interact -s path/to/ui_state.dipui</code> <!-- Reopen UI for major modifications --><br>
+    <code>diplomat tweak -c path/to/config -v path/to/video</code> <!-- Minor tweaks to tracking -->
+</div>
 
 > [Documentation and Basic Usage](https://diplomat.readthedocs.io/en/latest/basic_usage.html)
 
@@ -79,25 +63,33 @@ diplomat tweak -c path/to/config -v path/to/video
 
 ### Support
 
-**Get Help:**
+<div style="background: #EBF8FF; padding: 10px; border-left: 5px solid #3182CE;">
+    <h3>Get Help:</h3>
+    <code>diplomat --help</code><br>
+    <code>diplomat track --help</code><br>
+    <code>diplomat predictors --help</code>
+</div>
 
-```bash
-diplomat --help
-diplomat track --help
-diplomat predictors --help
-```
+<div style="background: #F7FAFC; padding: 10px
 
-**Development and Contributions:**
-
-Interested in contributing? Please see the [Development Usage](https://diplomat.readthedocs.io/en/latest/advanced_usage.html#development-usage) guide and feel free to submit pull requests or reach out directly to Isaac Robinson via email.
+; border-left: 5px solid #CBD5E0;">
+    <h3>Development and Contributions:</h3>
+    For those interested in contributing, refer to the [Development Usage](https://diplomat.readthedocs.io/en/latest/advanced_usage.html#development-usage) guide. Feel free to submit pull requests or reach out directly to Isaac Robinson via email.
+</div>
 
 ---
 
 ### License and Authors
 
-**License:** Available in the project's [LICENSE](#) file.
+<div style="background: #EDF2F7; padding: 10px; border-left: 5px solid #E2E8F0;">
+    <h3>License:</h3>
+    Available in the project's [LICENSE](#) file.
+</div>
 
-**Team:** A comprehensive list of contributors can be found in the project's [AUTHORS](#) file. For inquiries, contact [Isaac Robinson](mailto:isaac.k.robinson2000@gmail.com).
+<div style="background: #FAF5FF; padding: 10px; border-left: 5px solid #D6BCFA;">
+    <h3>Team:</h3>
+    A comprehensive list of contributors can be found in the project's [AUTHORS](#) file. For inquiries, contact [Isaac Robinson](mailto:isaac.k.robinson2000@gmail.com).
+</div>
 
 ---
 
