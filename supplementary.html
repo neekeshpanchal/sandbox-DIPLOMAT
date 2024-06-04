@@ -15,25 +15,42 @@
         header {
             background: #333;
             color: #fff;
-            padding: 1rem 0;
-            text-align: center;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0;
+            flex: 1;
+        }
+        header p {
+            margin: 0;
         }
         nav {
-            text-align: center;
-            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            background: #eaeaea;
+            padding: 1rem;
         }
         nav a {
             margin: 0 1rem;
+            padding: 0.5rem 1rem;
             text-decoration: none;
             color: #333;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background: #ccc;
         }
         .container {
             max-width: 1200px;
             margin: auto;
-            overflow: hidden;
-            padding: 0 2rem;
+            padding: 2rem;
         }
-        h1, h2, h3 {
+        h2 {
             color: #333;
         }
         p {
@@ -68,7 +85,6 @@
     <header>
         <h1>DIPLOMAT</h1>
         <p>Deep Learning-Based Identity Preserving Labeled-Object Multi-Animal Tracking</p>
-        <p><strong>NOTE:</strong> DIPLOMAT is currently alpha software, there may be minor bugs and usability issues.</p>
     </header>
     
     <nav>
