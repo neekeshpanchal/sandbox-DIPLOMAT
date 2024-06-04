@@ -56,14 +56,43 @@
         p {
             color: #666;
         }
-        .video, .images, .ui-demo {
+        .images {
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
             margin: 2rem 0;
         }
-        .video video, .images img, .ui-demo img {
+        .images img {
             max-width: 100%;
             height: auto;
+        }
+        .video-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .video-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .video-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .video {
+            flex: 1;
+            max-width: 48%;
+        }
+        .video video {
+            width: 100%;
+            height: auto;
+        }
+        .video-text {
+            flex: 1;
+            max-width: 48%;
+            margin-left: 2rem;
         }
         footer {
             background: #333;
@@ -90,21 +119,51 @@
         <section>
             <h2>About</h2>
             <p>DIPLOMAT provides algorithms and tools for performing multi-animal identity preserving tracking on top of single animal and multi animal CNN based tracking packages. Currently, it supports running on both DeepLabCut and SLEAP projects. Unlike other multi-animal tracking packages, DIPLOMAT's algorithms work directly off confidence maps instead of running peak detection, allowing for more nuanced tracking results compared to other methods.</p>
-            
-            <div class="video">
-                <video controls>
-                    <source src="https://github.com/TravisWheelerLab/DIPLOMAT/assets/47544550/d805b673-4678-4297-b288-3fd08ad3cf62.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+        </section>
+
+        <div class="images">
+            <img src="https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/example1.png" alt="Example of tracking 2 Degus in a Box">
+            <img src="https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/example2.png" alt="Example of tracking 3 Rats">
+        </div>
+
+        <section class="video-section">
+            <div class="video-row">
+                <div class="video">
+                    <video controls>
+                        <source src="https://github.com/TravisWheelerLab/DIPLOMAT/assets/47544550/d805b673-4678-4297-b288-3fd08ad3cf62.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-text">
+                    <h3>Video Title 1</h3>
+                    <p>Insert a description or additional information about this video here.</p>
+                </div>
             </div>
 
-            <div class="images">
-                <img src="https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/example1.png" alt="Example of tracking 2 Degus in a Box">
-                <img src="https://raw.githubusercontent.com/TravisWheelerLab/DIPLOMAT/main/docs/source/_static/imgs/example2.png" alt="Example of tracking 3 Rats">
+            <div class="video-row">
+                <div class="video">
+                    <video controls>
+                        <source src="https://github.com/TravisWheelerLab/DIPLOMAT/assets/47544550/d805b673-4678-4297-b288-3fd08ad3cf62.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-text">
+                    <h3>Video Title 2</h3>
+                    <p>Insert a description or additional information about this video here.</p>
+                </div>
             </div>
 
-            <div class="ui-demo">
-                <img src="https://github.com/neekeshpanchal/DIPLOMAT/assets/80868396/2c9e85ef-b263-492c-ba28-4f8813969396" alt="UI Demo Showing user correcting tracking in a video">
+            <div class="video-row">
+                <div class="video">
+                    <video controls>
+                        <source src="https://github.com/TravisWheelerLab/DIPLOMAT/assets/47544550/d805b673-4678-4297-b288-3fd08ad3cf62.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-text">
+                    <h3>Video Title 3</h3>
+                    <p>Insert a description or additional information about this video here.</p>
+                </div>
             </div>
         </section>
     </div>
@@ -113,5 +172,15 @@
         <p>&copy; 2024 DIPLOMAT Project</p>
         <p>See <code>LICENSE</code> for details.</p>
     </footer>
+
+    <script>
+        document.addEventListener('scroll', function() {
+            const videoSection = document.querySelector('.video-section');
+            const rect = videoSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                videoSection.classList.add('visible');
+            }
+        });
+    </script>
 </body>
 </html>
